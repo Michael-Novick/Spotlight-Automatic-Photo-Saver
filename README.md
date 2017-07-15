@@ -1,0 +1,1 @@
+# Spotlight-Automatic-Photo-Saver
