@@ -3,13 +3,17 @@ import shutil
 
 
 def main():
-    # Directories: User please update USERNAME and directories if necessary
-    save_location = r'\Users\USERNAME\Pictures\Spotlight'   # Directory you want your photos saved
-    copy_location = r'\Users\USERNAME\AppData\Local\Packages\Microsoft.Windows.Content' \
-                    r'DeliveryManager_cw5n1h2txyewy\LocalState\Assets'  # Windows directory with spotlight files
-
     # Header
     print_header()
+    # print(save_location)
+    # print(copy_location)
+
+    save_location = get_directory_from_user()
+    username = os.getlogin()
+    copy_location = "\\Users\\" + username + "\\AppData\\Local\\Packages\\Microsoft.Windows.Content" \
+                    "DeliveryManager_cw5n1h2txyewy\\LocalState\\Assets"  # Windows directory with spotlight files
+
+    print('Updating Photos Folder...')
 
     # Collect file names
     names = collect_file_names(save_location)
@@ -21,8 +25,12 @@ def main():
 
 def print_header():
     print('SPOTLIGHT PHOTOS UPDATER')
-    print('Updating Photos Folder...')
     print()
+
+
+def get_directory_from_user():
+    save_location = input('Please enter the directory of the folder you wish to save Spotlight images into: ')
+    return save_location
 
 
 def collect_file_names(save_location):
